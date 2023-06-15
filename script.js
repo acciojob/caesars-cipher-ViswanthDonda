@@ -32,14 +32,26 @@ const lookup = {
 };
 
 function rot13(encodedStr) {
-  let decodedArr = []; // Your Result goes here
+  let decodedStr = ""; // Your Result goes here
   // Only change code below this line
+	for (var i = 0; i < encodedStr.length; i++) {
+    var char = encodedStr[i];
+    var charCode = encodedStr.charCodeAt(i);
 
-  return; //return decodedArr
+    // Check uppercase
+    if (charCode >= 65 && charCode <= 90) {
+      // Decode the character by shifting it back 13 places
+      var decodedCharCode = ((charCode - 65 + 13) % 26) + 65;
+      var decodedChar = String.fromCharCode(decodedCharCode);
+      decodedStr += decodedChar;
+    } else {
+      // Pass non-alphabetic characters as they are
+      decodedStr += char;
+    }
+  }
+
+  return decodedStr; //return decodedArr
 }
-
-// You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
-
 // console.log(rot13("SERR YBIR? NPPVBWBO"));
 
 // Do not change this line
